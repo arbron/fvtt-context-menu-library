@@ -1,4 +1,4 @@
 # Changelog
 
 # 1.0.0
- - Add `getCompendiumEntryContext` hook
+ - Add `_getCompendiumEntryContext` hook

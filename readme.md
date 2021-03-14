@@ -4,4 +4,4 @@ This library is designed to facilitate the modification of context menus through
 
 
 ### Hooks
-- `Hooks.on('getCompendiumEntryContext', (compendium, html, menuOptions) => {});`: This hook is called whenever a Compendium list is rendered. By modifying the contents of `entryOptions`, you can add, remove, or modify the contents of the context menu for each entry in the Compendium.
+- `Hooks.on('_getCompendiumEntryContext', (compendium, html, menuOptions) => {});`: This hook is called whenever a Compendium list is rendered. By modifying the contents of `entryOptions`, you can add, remove, or modify the contents of the context menu for each entry in the Compendium.
