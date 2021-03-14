@@ -1,5 +1,5 @@
 {
-  "name": "_arbron-context-menus",
+  "name": "arbron-context-menus",
   "title": "Arbron's Context Menu Library",
   "description": "Library to facilitate adding and modifying Foundry's context menus.",
   "author": "Jeff 'Arbron' Hitchcock",
