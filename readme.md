@@ -21,3 +21,6 @@ Hooks.on('_getCompendiumEntryContext', (compendium, html, entryOptions) => {
   return entryOptions;
 });
 ```
+
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I53RGZS)
