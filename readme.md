@@ -18,7 +18,6 @@ Hooks.on('_getCompendiumEntryContext', (compendium, html, entryOptions) => {
     icon: '<i class="fas fa-sign-in-alt"></i>',
     callback: li => { }
   });
-  return entryOptions;
 });
 ```
 

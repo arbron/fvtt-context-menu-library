@@ -19,12 +19,13 @@ Hooks.on('init', function() {
  */
 function patchCompendiumContextMenu() {
   log('Patching Compendium._contextMenu');
+  const is080 = !isNewerVersion("0.8.0", game.data.version);
 
   let patched = Monkey.patchFunction(Compendium.prototype._contextMenu, [
     { line: 1,
       original:  'new ContextMenu(html, ".directory-item", [',
       replacement: 'return [' },
-    { line: 25,
+    { line: is080 ? 26 : 25,
       original: ']);',
       replacement: '];' }
   ]);
@@ -32,7 +33,7 @@ function patchCompendiumContextMenu() {
   Compendium.prototype._getCompendiumContextOptions = patched;
 
   let PatchedClass = Monkey.patchMethod(Compendium, 'activateListeners', [
-    { line: 12,
+    { line: is080 ? 9 : 12,
       original: 'this._contextMenu(html);',
       replacement: 'this._ctContextMenu(html);'
     }
