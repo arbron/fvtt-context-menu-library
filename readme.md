@@ -6,7 +6,7 @@ This library is designed to help module developers expand context menus in parts
 ![Foundry Version](https://img.shields.io/badge/dynamic/json.svg?url=https://github.com/arbron/fvtt-context-menu-library/releases/latest/download/module.json&label=foundry%20version&query=$.compatibleCoreVersion&colorB=blueviolet)
 ![Downloads](https://img.shields.io/github/downloads/arbron/fvtt-context-menu-library/total)
 [![Forge Install Base](https://img.shields.io/badge/dynamic/json?label=forge%20install%20base&query=package.installs&suffix=%&url=https://forge-vtt.com/api/bazaar/package/arbron-context-menus&colorB=brightgreen)](https://forge-vtt.com/bazaar#package=arbron-context-menus)
-![GitHub issues](https://img.shields.io/github/issues/arbron/fvtt-context-menu-library)
+![GitHub issues](https://img.shields.io/github/issues/arbron/fvtt-context-menu-library?colorB=red)
 
 
 ### Hooks
