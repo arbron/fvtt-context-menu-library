@@ -13,12 +13,12 @@
       "ko-fi": "arbron"
     }
   ],
-  "url": "https://github.com/arbron/fvtt-context-menus",
+  "url": "https://github.com/arbron/fvtt-context-menu-library",
   "manifest": "",
   "download": "",
-  "readme": "https://raw.githubusercontent.com/arbron/fvtt-context-menus/main/readme.md",
-  "changelog": "https://raw.githubusercontent.com/arbron/fvtt-context-menus/main/changelog.md",
-  "bugs": "https://github.com/arbron/fvtt-context-menus/issues",
+  "readme": "https://raw.githubusercontent.com/arbron/fvtt-context-menu-library/main/readme.md",
+  "changelog": "https://raw.githubusercontent.com/arbron/fvtt-context-menu-library/main/changelog.md",
+  "bugs": "https://github.com/arbron/fvtt-context-menu-library/issues",
   "allowBugReporter": true,
   "library": true,
   "version": "0.1.1",
