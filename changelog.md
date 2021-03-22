@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.2.0
+ - Add `_getModuleManagementEntryContext` hook
+
 # 0.1.2
  - Fix incorrect URLs in manifest (thanks [José Joaquín Bocanegra](https://github.com/JJBocanegra))
 
