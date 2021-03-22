@@ -4,6 +4,7 @@ import { Monkey } from './shared/Monkey.js';
 
 Hooks.on('init', function() {
   patchCompendiumContextMenu();
+  patchModuleManagementContextMenu();
 });
 
 
@@ -46,4 +47,27 @@ function patchCompendiumContextMenu() {
     Hooks.call('_getCompendiumEntryContext', this, html, entryOptions);
     if (entryOptions) new ContextMenu(html, '.directory-item', entryOptions);
   };
+}
+
+/**
+ * Monkey patch ModuleManagement.activateListeners to add the option of displaying
+ * a context menu for each module listing.
+ */
+function patchModuleManagementContextMenu() {
+  log('Patching ModuleManagement.activateListners');
+
+  let PatchedClass = Monkey.patchMethod(ModuleManagement, 'activateListeners', [
+    { line: 6,
+      original: '',
+      replacement: '\nthis._contextMenu(html);'
+    }
+  ]);
+  if (!PatchedClass) return;
+  ModuleManagement.prototype.activateListeners = PatchedClass.prototype.activateListeners;
+
+  ModuleManagement.prototype._contextMenu = function(html) {
+    const entryOptions = [];
+    Hooks.call('_getModuleManagementEntryContext', html, entryOptions);
+    if (entryOptions) new ContextMenu(html, '.package', entryOptions);
+  }
 }
