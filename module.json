@@ -21,9 +21,9 @@
   "bugs": "https://github.com/arbron/fvtt-context-menu-library/issues",
   "allowBugReporter": true,
   "library": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "0.8.0",
+  "compatibleCoreVersion": "0.8.6",
   "manifestPlusVersion": "1.1.0",
   "esmodules": [
     "./scripts/main.js"

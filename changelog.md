@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.2.1
+ - Upgrade compatible core version to 0.8.6
+
 # 0.2.0
  - Add `_getModuleManagementEntryContext` hook
 
