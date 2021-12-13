@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.2.2
+ - Fix issue with patching compendium menus in v9
+ - Upgrade compatible core version to v9
+
 # 0.2.1
  - Upgrade compatible core version to 0.8.6
 

@@ -1,11 +1,11 @@
 {
   "name": "arbron-context-menus",
-  "title": "Arbron's Context Menu Library",
+  "title": "Arbron’s Context Menu Library",
   "description": "Library to facilitate adding and modifying Foundry's context menus.",
-  "author": "Jeff 'Arbron' Hitchcock",
+  "author": "Jeff ‘Arbron’ Hitchcock",
   "authors": [
     {
-      "name": "Jeff 'Arbron' Hitchcock",
+      "name": "Jeff ‘Arbron’ Hitchcock",
       "url": "https://moviemaps.org",
       "email": "jeff@szed.co",
       "discord": "arbron#6515",
@@ -21,9 +21,9 @@
   "bugs": "https://github.com/arbron/fvtt-context-menu-library/issues",
   "allowBugReporter": true,
   "library": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "9",
   "manifestPlusVersion": "1.1.0",
   "esmodules": [
     "./scripts/main.js"

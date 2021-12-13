@@ -20,7 +20,16 @@ Hooks.on('init', function() {
  */
 function patchCompendiumContextMenu() {
   log('Patching Compendium._contextMenu');
-  const is080 = !isNewerVersion("0.8.0", game.data.version);
+
+  if ( !isNewerVersion("9", game.version ?? game.data.version) ) {
+    return Monkey.replaceMethod(Compendium, "_contextMenu", function(html) {
+      const entryOptions = this._getEntryContextOptions();
+      Hooks.call('_getCompendiumEntryContext', this, html, entryOptions);
+      if ( entryOptions ) ContextMenu.create(this, html, ".directory-item", entryOptions);
+    });
+  }
+
+  const is080 = !isNewerVersion("0.8.0", game.version ?? game.data.version);
 
   let patched = Monkey.patchFunction(Compendium.prototype._contextMenu, [
     { line: 1,
