@@ -10,7 +10,7 @@ This library is designed to help module developers expand context menus in parts
 
 
 ### Hooks
-- `Hooks.on('_getCompendiumEntryContext', (compendium, html, entryOptions) => {});`: This hook is called whenever a Compendium list is rendered. By modifying the contents of `entryOptions`, you can add, remove, or modify the contents of the context menu for each entry in the Compendium.
+- `Hooks.on('_getCompendiumEntryContext', (compendium, html, entryOptions) => {});`: This hook is called whenever a Compendium list is rendered. By modifying the contents of `entryOptions`, you can add, remove, or modify the contents of the context menu for each entry in the Compendium. ***Note:** This hook has been replaced by a core hook in V10.*
 - `Hooks.on('_getModuleManagementEntryContext', (html, entryOptiosn) => {});`: This hook is called whenever the Module Management application is rendered. By default no context menu is displayed here, but by adding to `entryOptions` you can introduce your own menu items.
 
 
