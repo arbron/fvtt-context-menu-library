@@ -1,5 +1,10 @@
 # Changelog
 
+# 0.3.0
+ - Deprecate _getCompendiumEntryContext in v10 in favor of core hook
+ - Update patching system to make use of libWrapper if installed
+ - Upgrade compatible core version to v10
+
 # 0.2.2
  - Fix issue with patching compendium menus in v9
  - Upgrade compatible core version to v9

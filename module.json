@@ -1,5 +1,6 @@
 {
   "name": "arbron-context-menus",
+  "id": "arbron-context-menus",
   "title": "Arbron’s Context Menu Library",
   "description": "Library to facilitate adding and modifying Foundry's context menus.",
   "author": "Jeff ‘Arbron’ Hitchcock",
@@ -19,13 +20,19 @@
   "readme": "https://raw.githubusercontent.com/arbron/fvtt-context-menu-library/main/readme.md",
   "changelog": "https://raw.githubusercontent.com/arbron/fvtt-context-menu-library/main/changelog.md",
   "bugs": "https://github.com/arbron/fvtt-context-menu-library/issues",
-  "allowBugReporter": true,
   "library": true,
-  "version": "0.2.2",
+  "version": "0.3.0",
   "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "9",
+  "compatibleCoreVersion": "10",
+  "compatibility": {
+    "minimum": "0.7.9",
+    "verified": "10"
+  },
   "manifestPlusVersion": "1.1.0",
   "esmodules": [
-    "./scripts/main.js"
-  ]
+    "./scripts/main.mjs"
+  ],
+  "flags": {
+    "allowBugReporter": true
+  }
 }
