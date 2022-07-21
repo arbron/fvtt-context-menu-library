@@ -21,8 +21,24 @@ Hooks.on('init', function() {
 function patchCompendiumContextMenu() {
   log('Patching Compendium._contextMenu');
 
-  if ( !isNewerVersion("9", game.version ?? game.data.version) ) {
-    return Monkey.replaceMethod(Compendium, "_contextMenu", function(html) {
+  // Core has its own hook in v10
+  if ( game.release?.generation >= 10 ) {
+    Hooks.on("getCompendiumEntryContext", function(...args) {
+      if ( Hooks.events._getCompendiumEntryContext?.length ) {
+        foundry.utils.logCompatibilityWarning(
+          "Foundry has added a core hook for configuring the Compendium context: getCompendiumEntryContext. "
+          + "That hook should be used rather than _getCompendiumEntryContext from Arbron’s Context Menu Library.",
+          { since: "0.3", until: "0.4", stack: false }
+        );
+        Hooks.call('_getCompendiumEntryContext', ...args);
+      }
+    });
+    return;
+  }
+
+  // V9 adds Compendium._getEntryContextOptions, so only replace _contextMenu to call the hook
+  if ( game.release?.generation === 9 ) {
+    return Monkey.replace("Compendium.prototype._contextMenu", function(html) {
       const entryOptions = this._getEntryContextOptions();
       Hooks.call('_getCompendiumEntryContext', this, html, entryOptions);
       if ( entryOptions ) ContextMenu.create(this, html, ".directory-item", entryOptions);
@@ -39,7 +55,7 @@ function patchCompendiumContextMenu() {
       original: ']);',
       replacement: '];' }
   ]);
-  if (!patched) return;
+  if ( !patched ) return;
   Compendium.prototype._getCompendiumContextOptions = patched;
 
   let PatchedClass = Monkey.patchMethod(Compendium, 'activateListeners', [
@@ -65,14 +81,10 @@ function patchCompendiumContextMenu() {
 function patchModuleManagementContextMenu() {
   log('Patching ModuleManagement.activateListners');
 
-  let PatchedClass = Monkey.patchMethod(ModuleManagement, 'activateListeners', [
-    { line: 6,
-      original: '',
-      replacement: '\nthis._contextMenu(html);'
-    }
-  ]);
-  if (!PatchedClass) return;
-  ModuleManagement.prototype.activateListeners = PatchedClass.prototype.activateListeners;
+  Monkey.wrap("ModuleManagement.prototype.activateListeners", function(wrapped, html) {
+    wrapped(html);
+    this._contextMenu(html);
+  });
 
   ModuleManagement.prototype._contextMenu = function(html) {
     const entryOptions = [];
