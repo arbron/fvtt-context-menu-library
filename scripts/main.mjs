@@ -1,5 +1,5 @@
-import { log } from './shared/messages.js';
-import { Monkey } from './shared/Monkey.js';
+import { log } from './shared/messages.mjs';
+import { Monkey } from './shared/Monkey.mjs';
 
 
 Hooks.on('init', function() {

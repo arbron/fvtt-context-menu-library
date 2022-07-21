@@ -3,8 +3,8 @@
  * https://github.com/League-of-Foundry-Developers/fvtt-module-furnace
  */
 
-import constants from './constants.js';
-import { log, makeError } from './messages.js';
+import constants from './constants.mjs';
+import { log, makeError } from './messages.mjs';
 
 
 const ORIG_PREFIX = `__${constants.moduleName}_original_`;
