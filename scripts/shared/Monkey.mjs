@@ -23,13 +23,13 @@ export class Monkey {
   /* ----------------------------- */
 
   static replace(target, func) {
-    libWrapper.register(constants.modulePath, target, func, libWrapper.OVERRIDE);
+    libWrapper.register(constants.moduleName, target, func, libWrapper.OVERRIDE);
   }
 
   /* ----------------------------- */
   
   static wrap(target, func) {
-    return libWrapper.register(constants.modulePath, target, func, libWrapper.WRAPPER);
+    return libWrapper.register(constants.moduleName, target, func, libWrapper.WRAPPER);
   }
 
   /* ----------------------------- */
@@ -157,11 +157,11 @@ export class Monkey {
 
   static replaceFunction(cls, name, func) {
     cls[ORIG_PREFIX + name] = cls[name];
-    return libWrapper.register(constants.modulePath, `${cls.name}.${name}`, func, libWrapper.OVERRIDE);
+    return libWrapper.register(constants.moduleName, `${cls.name}.${name}`, func, libWrapper.OVERRIDE);
   }
   static replaceMethod(cls, name, func) {
     cls.prototype[ORIG_PREFIX + name] = cls.prototype[name];
-    return libWrapper.register(constants.modulePath, `${cls.name}.prototype.${name}`, func, libWrapper.OVERRIDE);
+    return libWrapper.register(constants.moduleName, `${cls.name}.prototype.${name}`, func, libWrapper.OVERRIDE);
   }
   static replaceStaticGetter(cls, name, func) {
     let getterProperty = Object.getOwnPropertyDescriptor(cls, name);

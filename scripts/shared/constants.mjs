@@ -1,5 +1,5 @@
 let constants = {
-  moduleName: 'arbrons-context-menus',
+  moduleName: 'arbron-context-menus',
   moduleLabel: 'Arbron\'s Context Menu Library',
 };
 constants.modulePath = `modules/${constants.moduleName}`;

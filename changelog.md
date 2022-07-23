@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.3.1
+ - Fix libWrapper errors
+
 # 0.3.0
  - Deprecate _getCompendiumEntryContext in v10 in favor of core hook
  - Update patching system to make use of libWrapper if installed
