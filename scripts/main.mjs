@@ -23,14 +23,15 @@ function patchCompendiumContextMenu() {
 
   // Core has its own hook in v10
   if ( game.release?.generation >= 10 ) {
-    Hooks.on("getCompendiumEntryContext", function(...args) {
+    Hooks.on("getCompendiumEntryContext", function(html, entryOptions) {
       if ( Hooks.events._getCompendiumEntryContext?.length ) {
         foundry.utils.logCompatibilityWarning(
           "Foundry has added a core hook for configuring the Compendium context: getCompendiumEntryContext. "
           + "That hook should be used rather than _getCompendiumEntryContext from Arbron’s Context Menu Library.",
           { since: "0.3", until: "0.4", stack: false }
         );
-        Hooks.call('_getCompendiumEntryContext', ...args);
+        const compendiumSheet = game.packs.get(html[0].dataset.pack)?.apps[0];
+        Hooks.call('_getCompendiumEntryContext', compendiumSheet, html, entryOptions);
       }
     });
     return;

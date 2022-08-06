@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.3.2
+ - Fix issue with changed signature of `_getCompendiumEntryContext` on v10
+
 # 0.3.1
  - Fix libWrapper errors
 
