@@ -17,17 +17,23 @@ export class Monkey {
     const original = this.#getFunction(target);
     if ( !original ) return;
     const patched = this.#patchFunction(original.value, patches);
-    return libWrapper.register(constants.modulePath, target, patched, libWrapper.OVERRIDE);
+    return libWrapper.register(constants.moduleName, target, patched, libWrapper.OVERRIDE);
   }
 
   /* ----------------------------- */
 
   static replace(target, func) {
-    libWrapper.register(constants.moduleName, target, func, libWrapper.OVERRIDE);
+    return libWrapper.register(constants.moduleName, target, func, libWrapper.OVERRIDE);
   }
 
   /* ----------------------------- */
-  
+
+  static mix(target, func) {
+    return libWrapper.register(constants.moduleName, target, func, libWrapper.MIXED);
+  }
+
+  /* ----------------------------- */
+
   static wrap(target, func) {
     return libWrapper.register(constants.moduleName, target, func, libWrapper.WRAPPER);
   }
@@ -96,90 +102,7 @@ export class Monkey {
     if ( !fixed.startsWith("function") && !fixed.match(/^async\s+function/) ) fixed = "function " + fixed;
     if ( fixed.startsWith("function async") ) fixed = fixed.replace("function async", "async function");
 
-    // Fix any super usage
-    // if ( fixed.includes("super.") ) {
-    //   fixed.replaceAll("super.", "Object.getPrototypeOf(this.constructor).")
-    // }
-
-    console.log(fixed);
-
     return Function(`"use strict";return (${fixed})`)();
-  }
-
-  /**
-   * Patch the specified function or method with the provided changes
-   * and return the updated function or method.
-   *
-   * Patch Format: {
-   *   line: Line to replace
-   *   original: Version of line as appears in code
-   *   replacement: Replacement code
-   * }
-   */
-  static patchClass(cls, func, patches) {
-    // Check in case the class/function had been deprecated/removed
-    if ( func === undefined ) return;
-    let funcStr = func.toString();
-
-    // Check for newlines so it can work on minified content too
-    const splitChar = funcStr.indexOf("\n") >= 0 ? "\n" : ";";
-    let lines = funcStr.split(splitChar)
-
-    // Apply patches
-    for ( const patch of patches ) {
-      if ( (lines[patch.line] !== undefined) && (lines[patch.line].trim() == patch.original.trim()) ) {
-          lines[patch.line] = lines[patch.line].replace(patch.original, patch.replacement);
-      } else {
-        throw new makeError(
-          `Cannot patch function. It has the wrong content at line ${patch.line} : ${lines[patch.line] && lines[patch.line].trim()} != ${patch.original.trim()}\n${funcStr}`
-        );
-      }
-    }
-    let fixed = lines.join(splitChar);
-
-    if ( cls !== undefined ) {
-      let classStr = cls.toString();
-      fixed = classStr.replace(funcStr, fixed);
-    } else {
-      // Check if it's a method instead of a function, add 'function' as we define it, but don't do it for 'async function'
-      if ( !fixed.startsWith("function") && !fixed.match(/^async\s+function/) ) fixed = "function " + fixed;
-      if ( fixed.startsWith("function async") ) fixed = fixed.replace("function async", "async function");
-    }
-    return Function('"use strict";return (' + fixed + ')')();
-  }
-
-  static patchFunction(func, patches) {
-    return Monkey.patchClass(undefined, func, patches);
-  }
-  static patchMethod(cls, func, patches) {
-    return Monkey.patchClass(cls, cls.prototype[func], patches);
-  }
-
-  static replaceFunction(cls, name, func) {
-    cls[ORIG_PREFIX + name] = cls[name];
-    return libWrapper.register(constants.moduleName, `${cls.name}.${name}`, func, libWrapper.OVERRIDE);
-  }
-  static replaceMethod(cls, name, func) {
-    cls.prototype[ORIG_PREFIX + name] = cls.prototype[name];
-    return libWrapper.register(constants.moduleName, `${cls.name}.prototype.${name}`, func, libWrapper.OVERRIDE);
-  }
-  static replaceStaticGetter(cls, name, func) {
-    let getterProperty = Object.getOwnPropertyDescriptor(cls, name);
-    if (getterProperty == undefined) return false;
-    Object.defineProperty(cls, ORIG_PREFIX + name, getterProperty);
-    Object.defineProperty(cls, name, { get: func });
-    return true;
-  }
-  static replaceGetter(cls, name, func) {
-    return Monkey.replaceStaticGetter(cls.prototype, name, func);
-  }
-
-  // Would be the same code for callOriginalMethod as long as 'cls' is actually the instance
-  static callOriginalFunction(cls, name, ...args) {
-    return cls[ORIG_PREFIX + name].call(cls, ...args);
-  }
-  static callOriginalGetter(cls, name) {
-    return cls[ORIG_PREFIX + name];
   }
 }
 

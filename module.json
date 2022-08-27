@@ -28,10 +28,11 @@
     "minimum": "0.7.9",
     "verified": "10"
   },
-  "manifestPlusVersion": "1.1.0",
   "esmodules": [
-    "./scripts/main.mjs"
+    "./context-menus.mjs"
   ],
+  "manifestPlusVersion": "1.2.0",
+  "includes": ["changelog.md", "LICENSE", "readme.md"],
   "flags": {
     "allowBugReporter": true
   }
