@@ -1,5 +1,8 @@
 # Changelog
 
+# 0.3.3
+ - Update compatible core version to v12
+
 # 0.3.2
  - Fix issue with changed signature of `_getCompendiumEntryContext` on v10
 

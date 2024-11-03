@@ -21,19 +21,15 @@
   "changelog": "https://raw.githubusercontent.com/arbron/fvtt-context-menu-library/main/changelog.md",
   "bugs": "https://github.com/arbron/fvtt-context-menu-library/issues",
   "library": true,
-  "version": "0.3.2",
+  "version": "0.3.3",
   "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "10",
+  "compatibleCoreVersion": "12",
   "compatibility": {
     "minimum": "0.7.9",
-    "verified": "10"
+    "verified": "12"
   },
   "esmodules": [
     "./context-menus.mjs"
   ],
-  "manifestPlusVersion": "1.2.0",
-  "includes": ["changelog.md", "LICENSE", "readme.md"],
-  "flags": {
-    "allowBugReporter": true
-  }
+  "includes": ["changelog.md", "LICENSE", "readme.md"]
 }
